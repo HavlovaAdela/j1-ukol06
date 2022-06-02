@@ -12,7 +12,7 @@ public class Aplikace extends JFrame {
 
     private JTextField husyText;
     private JLabel husyLabel;
-    private JTextField kraliciText;
+    private JSpinner kraliciText;
     private JLabel kraliciLabel;
     private JTextField pocetNohouText;
     private JLabel pocetNohouLabel;
@@ -50,8 +50,9 @@ public class Aplikace extends JFrame {
 
 
         kraliciLabel = new JLabel("králíci");
-        kraliciText = new JTextField("vepiš počet králíků");
-        kraliciText.setHorizontalAlignment(JTextField.TRAILING);
+        SpinnerNumberModel mujModel= new SpinnerNumberModel(0,0,2147483647,1);
+        kraliciText = new JSpinner(mujModel);
+
         kraliciLabel.setLabelFor(kraliciText);
         add(kraliciLabel);
         add(kraliciText);
@@ -87,7 +88,7 @@ public class Aplikace extends JFrame {
     }
 
     private void vypocitejButton(ActionEvent actionEvent) {
-        int pocetHlavKraliku = Integer.parseInt(kraliciText.getText());
+        int pocetHlavKraliku = (Integer)kraliciText.getValue();
         int pocetHlavHus = Integer.parseInt(husyText.getText());
 
         int pocetHlav = pocetHlavHus + pocetHlavKraliku;
